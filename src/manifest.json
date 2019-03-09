@@ -1,6 +1,6 @@
 {
-  "name": "Ark Mobile",
-  "short_name": "Ark",
+  "name": "Ockham Mobile Wallet",
+  "short_name": "Ockham",
   "start_url": "index.html",
   "display": "standalone",
   "icons": [{

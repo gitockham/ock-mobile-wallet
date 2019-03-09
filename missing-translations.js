@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const i18nDir = path.join(__dirname, '//src//assets//i18n');
-const masterFileName = 'en.json';
+const masterFileName = 'fr.json';
 
 const getMissingKeys = (master, slave, missingKeys, pathPrefix) => {
   if (!missingKeys) {

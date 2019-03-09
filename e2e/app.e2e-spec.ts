@@ -7,6 +7,6 @@ describe('ArkApp', () => {
   });
 
   it('should have a title', () => {
-    browser.getTitle().then(title => expect(title).toEqual('Ark Mobile'));
+    browser.getTitle().then(title => expect(title).toEqual('Ockham Mobile'));
   });
 });
