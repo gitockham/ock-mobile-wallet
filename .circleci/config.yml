@@ -1,7 +1,7 @@
 version: 2
 jobs:
   test-node-9:
-    working_directory: ~/mobile-wallet
+    working_directory: ~/mlc-mobile
     docker:
       - image: circleci/node:8-browsers
     steps: &teststeps
@@ -36,7 +36,7 @@ jobs:
           command: npm run build -- --prod
 
   test-node-stable:
-      working_directory: ~/mobile-wallet
+      working_directory: ~/mlc-mobile
       docker:
         - image: circleci/node:latest-browsers
       steps: *teststeps

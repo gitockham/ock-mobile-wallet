@@ -7,8 +7,12 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/debounceTime';
 
 import { ArkApiProvider } from '@providers/ark-api/ark-api';
+// import { OckApiProvider } from '@providers/ock-api/ock-api';
+// import { MlcApiProvider } from '@providers/mlc-api/mlc-api';
 
 import { Network, Peer } from 'ark-ts';
+// import { OckNetwork, OckPeer } from 'ock-ts';
+// import { MlcNetwork, MlcPeer } from 'mlc-ts';
 
 import * as constants from '@app/app.constants';
 import { TranslateService } from '@ngx-translate/core';
@@ -95,3 +99,157 @@ export class NetworkStatusPage implements OnDestroy {
   }
 
 }
+
+/* export class OckNetworkStatusPage implements OnDestroy {
+
+  public currentNetwork: OckNetwork;
+  public currentPeer: OckPeer;
+
+  private unsubscriber$: Subject<void> = new Subject<void>();
+
+  private refreshIntervalListener;
+  private loader;
+
+  constructor(
+    private ockApiProvider: OckApiProvider,
+    private loadingCtrl: LoadingController,
+    private zone: NgZone,
+    private translateService: TranslateService,
+    private toastProvider: ToastProvider,
+  ) {
+    this.currentNetwork = this.ockApiProvider.network;
+    this.currentPeer = this.currentNetwork.activePeer;
+  }
+
+  getPeerUrl() {
+    return `http://${this.currentPeer.ip}:${this.currentPeer.port}`;
+  }
+
+  changePeer() {
+    this.translateService.get('NETWORKS_PAGE.LOOKING_GOOD_PEER').debounceTime(500).subscribe((translate) => {
+      this.loader = this.loadingCtrl.create({
+        content: translate,
+        duration: 10000
+      });
+
+      this.ockApiProvider.findGoodPeer();
+      this.loader.present();
+    });
+  }
+
+  private refreshData() {
+    this.ockApiProvider.api.peer.get(this.currentPeer.ip, this.currentPeer.port)
+    .takeUntil(this.unsubscriber$)
+    .do((response) => {
+      if (response.success) {
+        this.zone.run(() => this.currentPeer = response.peer);
+      }
+    })
+    .subscribe();
+  }
+
+  private onUpdatePeer() {
+    this.ockApiProvider.onUpdatePeer$
+      .takeUntil(this.unsubscriber$)
+      .do((peer) => {
+        if (this.loader) { this.loader.dismiss(); }
+        this.translateService.get('NETWORKS_PAGE.PEER_SUCCESSFULLY_CHANGED')
+          .subscribe((translate) => this.toastProvider.success(translate));
+        this.zone.run(() => this.currentPeer = peer);
+      }).subscribe();
+  }
+
+  ionViewDidLoad() {
+    this.onUpdatePeer();
+    this.refreshData();
+
+    this.refreshIntervalListener = setInterval(() => {
+      this.refreshData();
+    }, constants.WALLET_REFRESH_TRANSACTIONS_MILLISECONDS);
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.refreshIntervalListener);
+
+    this.unsubscriber$.next();
+    this.unsubscriber$.complete();
+  }
+
+} */
+
+/* export class MlcNetworkStatusPage implements OnDestroy {
+
+  public currentNetwork: MlcNetwork;
+  public currentPeer: MlcPeer;
+
+  private unsubscriber$: Subject<void> = new Subject<void>();
+
+  private refreshIntervalListener;
+  private loader;
+
+  constructor(
+    private mlcApiProvider: MlcApiProvider,
+    private loadingCtrl: LoadingController,
+    private zone: NgZone,
+    private translateService: TranslateService,
+    private toastProvider: ToastProvider,
+  ) {
+    this.currentNetwork = this.mlcApiProvider.network;
+    this.currentPeer = this.currentNetwork.activePeer;
+  }
+
+  getPeerUrl() {
+    return `http://${this.currentPeer.ip}:${this.currentPeer.port}`;
+  }
+
+  changePeer() {
+    this.translateService.get('NETWORKS_PAGE.LOOKING_GOOD_PEER').debounceTime(500).subscribe((translate) => {
+      this.loader = this.loadingCtrl.create({
+        content: translate,
+        duration: 10000
+      });
+
+      this.mlcApiProvider.findGoodPeer();
+      this.loader.present();
+    });
+  }
+
+  private refreshData() {
+    this.mlcApiProvider.api.peer.get(this.currentPeer.ip, this.currentPeer.port)
+    .takeUntil(this.unsubscriber$)
+    .do((response) => {
+      if (response.success) {
+        this.zone.run(() => this.currentPeer = response.peer);
+      }
+    })
+    .subscribe();
+  }
+
+  private onUpdatePeer() {
+    this.mlcApiProvider.onUpdatePeer$
+      .takeUntil(this.unsubscriber$)
+      .do((peer) => {
+        if (this.loader) { this.loader.dismiss(); }
+        this.translateService.get('NETWORKS_PAGE.PEER_SUCCESSFULLY_CHANGED')
+          .subscribe((translate) => this.toastProvider.success(translate));
+        this.zone.run(() => this.currentPeer = peer);
+      }).subscribe();
+  }
+
+  ionViewDidLoad() {
+    this.onUpdatePeer();
+    this.refreshData();
+
+    this.refreshIntervalListener = setInterval(() => {
+      this.refreshData();
+    }, constants.WALLET_REFRESH_TRANSACTIONS_MILLISECONDS);
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.refreshIntervalListener);
+
+    this.unsubscriber$.next();
+    this.unsubscriber$.complete();
+  }
+
+} */

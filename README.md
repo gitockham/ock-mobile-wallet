@@ -1,4 +1,4 @@
-# OCKHAM Mobile Wallet
+# Mobile Wallet
 
 <p align="center">
     <img src="./banner.png" />
@@ -6,17 +6,17 @@
 
 > A Wallet for Everyone
 
-[![Build Status](https://badgen.now.sh/circleci/github/gitockham/ock-mobile-wallet)](https://circleci.com/gh/gitockham/ock-mobile-wallet)
-[![Codecov](https://badgen.now.sh/codecov/c/github/gitockham/ock-mobile-wallet)](https://codecov.io/gh/gitockham/ock-mobile-wallet)
-[![Latest Version](https://badgen.now.sh/github/release/gitockham/ock-mobile-wallet)](https://github.com/gitockham/ock-mobile-wallet/releases/latest)
+[![Build Status](https://badgen.now.sh/circleci/github/laroue/mobile-wallet)](https://circleci.com/gh/laroue/mobile-wallet)
+[![Codecov](https://badgen.now.sh/codecov/c/github/laroue/mobile-wallet)](https://codecov.io/gh/laroue/mobile-wallet)
+[![Latest Version](https://badgen.now.sh/github/release/laroue/mobile-wallet)](https://github.com/laroue/mobile-wallet/releases/latest)
 [![License: MIT](https://badgen.now.sh/badge/license/MIT/green)](https://opensource.org/licenses/MIT)
 
-OCKHAM’s mobile wallet is a hybrid application (using the same codebase for Android and iOS which helps with coordinated development). Created using Ionic framework and OCKHAM’s [TypeScript API](https://github.com/gitockham/ock-ts) to interact with the OCKHAM network via your mobile phone, anytime, anywhere (as long as you have an internet connection).
+MLC’s mobile wallet is a hybrid application (using the same codebase for Android and iOS which helps with coordinated development). Created using Ionic framework and MLC’s [TypeScript API](https://github.com/laroue/mlc-ts) to interact with the MLC network via your mobile phone, anytime, anywhere (as long as you have an internet connection).
 
 ## Download
 
-- [Google Play](https://play.google.com/store/apps/details?id=io.ockham.wallet.mobile)
-- [App Store](https://itunes.apple.com/us/app/mobile-ockham/id1324625967)
+- [Google Play](https://play.google.com/store/apps/details?id=io.mlc.wallet.mobile)
+- [App Store](https://itunes.apple.com/us/app/mlc-mobile/id1324625967)
 
 ## Features
 
@@ -25,9 +25,9 @@ OCKHAM’s mobile wallet is a hybrid application (using the same codebase for An
 - Encrypt access to your profile with a custom 6 digit PIN (AES256+PBKDF2).
 - Most transaction types are available: send, receive, vote, unvote, register a delegate.
 - Connects to both mainnet and devnet.
-- Option for additional profiles (separate profiles for different OCKHAM addresses or networks).
+- Option for additional profiles (separate profiles for different addresses or networks).
 - Option to add contacts and easily transact with them.
-- Total balance of your combined OCKHAM addresses.
+- Total balance of your combined addresses.
 - Wallet backup - input your selected PIN to decrypt your wallet and gain view of your private data.
 - Change PIN - if you want to change your encryption/decryption PIN you can easily do so..
 - Clear Data — you can clear all your data from the phone.
@@ -82,23 +82,23 @@ $ npm run test:e2e
 
 ## Security
 
-If you discover a security vulnerability within this application, please send an e-mail to security@ockham.consulting. All security vulnerabilities will be promptly addressed.
+If you discover a security vulnerability within this application, please send an e-mail to security@laroue.org. All security vulnerabilities will be promptly addressed.
 
 ## Contributing
 
 - If you find any bugs, submit an [issue](../../issues) or open [pull-request](../../pulls), helping us catch and fix them.
-- Engage with other users and developers on [OCKHAM Slack](https://ockham.consulting/slack/).
-- Join to our [gitter](https://gitter.im/ockham-developers/Lobby).
-- [Contribution bounties](https://docs.ockham.consulting/guidebook/contribution-guidelines/contributing.html).
+- Engage with other users and developers on [MLC Slack](https://laroue.org/slack/).
+- Join to our [gitter](https://gitter.im/mlc-developers/Lobby).
+- [Contribution bounties](https://docs.laroue.org/guidebook/contribution-guidelines/contributing.html).
 - [Help translate](./TRANSLATING.md).
 
 ## Credits
 
 - [Lúcio Rubens](https://github.com/luciorubeens)
 - [Alex Barnsley](https://github.com/alexbarnsley)
-- [Luc Talarico](https://github.com/gitockham)
+- [Luc Talarico](https://github.com/laroue)
 - [All Contributors](../../contributors)
 
 ## License
 
-[MIT](LICENSE) © [OCKHAM CONSULTING INSTITUTE](https://ockham.consulting)
+[MIT](LICENSE) © [LA ROUE](https://laroue.org)

@@ -1,6 +1,6 @@
 {
-  "name": "Ockham Mobile Wallet",
-  "short_name": "Ockham",
+  "name": "Mobile Wallet",
+  "short_name": "Mobile",
   "start_url": "index.html",
   "display": "standalone",
   "icons": [{

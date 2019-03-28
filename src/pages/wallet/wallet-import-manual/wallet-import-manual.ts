@@ -56,10 +56,10 @@ export class WalletManualImportPage extends BaseWalletImport  {
     this.useAddress = navParams.get('type') === 'address';
     this.nonBIP39Passphrase = false;
 
-    this.wordlist = bip39.wordlists.english;
-    if (this.wordlistLanguage && this.wordlistLanguage !== 'english') {
+    this.wordlist = bip39.wordlists.french;
+    if (this.wordlistLanguage && this.wordlistLanguage !== 'french') {
       this.wordlist = bip39.wordlists[this.wordlistLanguage].concat(this.wordlist);
-      // at first, we use the english wordlist *and* the configured wordlist language (suggesting in the 2 languages)
+      // at first, we use the french wordlist *and* the configured wordlist language (suggesting in the 2 languages)
     }
 
     this.initFormValidation();
@@ -100,13 +100,13 @@ export class WalletManualImportPage extends BaseWalletImport  {
 
   updateWordlist() {
     // Here we want to find in which language we have to suggest words based on the words already typed
-    // Only applicable if we configured a passphrase language != english
+    // Only applicable if we configured a passphrase language != french
     const words = this.addressOrPassphrase.split(' ');
-    if (this.suggestLanguageFound || !this.wordlistLanguage || this.wordlistLanguage === 'english' || words.length < 2) { return; }
+    if (this.suggestLanguageFound || !this.wordlistLanguage || this.wordlistLanguage === 'french' || words.length < 2) { return; }
 
     for (const word of words.slice(0, -1)) {
       // we use every word except the last one as it may being typed
-      for (const [lang1, lang2] of [['english', this.wordlistLanguage], [this.wordlistLanguage, 'english']]) {
+      for (const [lang1, lang2] of [['french', this.wordlistLanguage], [this.wordlistLanguage, 'french']]) {
         // we want to find a word which is in one wordlist and not in the other
         if (bip39.wordlists[lang1].indexOf(word) !== -1 && bip39.wordlists[lang2].indexOf(word) === -1) {
           this.wordlist = bip39.wordlists[lang1];

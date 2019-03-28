@@ -3,6 +3,8 @@ export const BLOCKCHAIN_PREMINNED = 125000000;
 
 // WALLET
 export const ARKTOSHI_DP = 8;
+// export const OCKTOSHI_DP = 8;
+// export const MLCTOSHI_DP = 8;
 export const WALLET_UNIT_TO_SATOSHI = 100000000;
 export const WALLET_REFRESH_PRICE_MILLISECONDS = 500 * 1000;
 export const WALLET_REFRESH_TRANSACTIONS_MILLISECONDS = 10 * 1000;
@@ -44,6 +46,6 @@ export const PIN_ATTEMPTS_LIMIT = 3;
 export const PIN_ATTEMPTS_TIMEOUT_MILLISECONDS = 30 * 1000;
 
 // ARK
-export const PRIVACY_POLICY_URL = 'https://ockham.consulting/PrivacyPolicy.txt';
-export const URI_QRCODE_SCHEME_PREFIX = 'ark:';
+export const PRIVACY_POLICY_URL = 'https://laroue.org/PrivacyPolicy.txt';
+export const URI_QRCODE_SCHEME_PREFIX = 'mlc:';
 export const NUM_ACTIVE_DELEGATES = 51;

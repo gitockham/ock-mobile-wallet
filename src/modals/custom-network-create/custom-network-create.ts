@@ -1,8 +1,16 @@
 import { Component } from '@angular/core';
 import { IonicPage, LoadingController, ViewController } from 'ionic-angular';
 import { ToastProvider } from '@providers/toast/toast';
+
 import { LoaderAutoConfigure, Network, NetworkType, Peer, PeerVersion2ConfigResponse } from 'ark-ts';
 import * as arkts from 'ark-ts';
+
+// import { OckLoaderAutoConfigure, OckNetwork, OckNetworkType, OckPeer, OckPeerVersion2ConfigResponse } from 'ock-ts';
+// import * as ockts from 'ock-ts';
+
+// import { MlcLoaderAutoConfigure, MlcNetwork, MlcNetworkType, MlcPeer, MlcPeerVersion2ConfigResponse } from 'mlc-ts';
+// import * as mlcts from 'mlc-ts';
+
 import lodash from 'lodash';
 
 @IonicPage()
@@ -109,3 +117,203 @@ export class CustomNetworkCreateModal {
     this.toastProvider.error('CUSTOM_NETWORK.CONFIGURE_ERROR');
   }
 }
+
+/* export class OckCustomNetworkCreateModal {
+
+  public network: OckNetwork = new Network();
+  public name: string;
+  public seedServer: string;
+  public isVersion2: boolean;
+
+  public constructor(private viewCtrl: ViewController,
+                     private toastProvider: ToastProvider,
+                     private loadingCtrl: LoadingController) {
+  }
+
+  public dismiss(network?: OckNetwork): void {
+    this.viewCtrl.dismiss(network);
+  }
+
+  public configure(): void {
+    if (this.isVersion2) {
+      return this.configureVersion2();
+    }
+
+    const loading = this.loadingCtrl.create();
+    loading.present();
+
+    const seedServerUrl = this.getSeedServerUrl();
+    new arkts.Client(OckNetwork.getDefault(OckNetworkType.Mainnet))
+      .loader.autoConfigure(seedServerUrl.origin)
+      .finally(() => loading.dismiss())
+      .subscribe((r: OckLoaderAutoConfigure) => {
+        if (!r.success) {
+          this.configureError();
+          return;
+        }
+
+        this.network.name = this.name;
+        this.network.nethash = r.network.nethash;
+        this.network.token = r.network.token;
+        this.network.symbol = r.network.symbol;
+        this.network.explorer = r.network.explorer;
+        this.network.version = r.network.version;
+        this.network.activePeer = new Peer();
+        this.network.activePeer.ip = seedServerUrl.hostname;
+        this.network.activePeer.port = Number(seedServerUrl.port);
+        this.network.type = null;
+        this.dismiss(this.network);
+      }, () => this.configureError());
+  }
+
+  private configureVersion2(): void {
+    const loading = this.loadingCtrl.create();
+    loading.present();
+
+    const seedServerUrl = this.getSeedServerUrl();
+    new arkts.Client(OckNetwork.getDefault(OckNetworkType.Mainnet))
+      .peer.getVersion2Config(seedServerUrl.hostname, Number(seedServerUrl.port))
+      .finally(() => loading.dismiss())
+      .subscribe((r: OckPeerVersion2ConfigResponse) => {
+        if (!r.data) {
+          this.configureError();
+          return;
+        }
+
+        this.network.name = this.name;
+        this.network.nethash = lodash.get(r, 'data.network.nethash');
+        this.network.token = lodash.get(r, 'data.network.token.name');
+        this.network.symbol = lodash.get(r, 'data.network.token.symbol');
+        this.network.explorer = lodash.get(r, 'data.network.explorer');
+        this.network.version = lodash.get(r, 'data.network.version');
+        this.network.activePeer = new Peer();
+        this.network.activePeer.ip = seedServerUrl.hostname;
+        this.network.activePeer.port = Number(seedServerUrl.port);
+        this.network.type = null;
+
+        const apiConfig: any = lodash.find(r.data.plugins, (_, key) => key.split('/').reverse()[0] === 'core-api');
+        if (!r.data.plugins || !apiConfig || !apiConfig.enabled || !apiConfig.port) {
+          this.configureError();
+          return;
+        }
+        this.network.apiPort = apiConfig.port;
+        this.network.p2pPort = Number(seedServerUrl.port);
+        this.network.p2pVersion = '2.0.0';
+        this.network.isV2 = true;
+        this.dismiss(this.network);
+      }, () => this.configureError());
+  }
+
+  public getSeedServerUrl(): URL {
+    try {
+      return new URL(this.seedServer);
+    } catch (error) {
+      return null;
+    }
+  }
+
+  private configureError(): void {
+    this.network = new Network();
+    this.toastProvider.error('CUSTOM_NETWORK.CONFIGURE_ERROR');
+  }
+} */
+
+/* export class MlcCustomNetworkCreateModal {
+
+  public network: MlcNetwork = new Network();
+  public name: string;
+  public seedServer: string;
+  public isVersion2: boolean;
+
+  public constructor(private viewCtrl: ViewController,
+                     private toastProvider: ToastProvider,
+                     private loadingCtrl: LoadingController) {
+  }
+
+  public dismiss(network?: MlcNetwork): void {
+    this.viewCtrl.dismiss(network);
+  }
+
+  public configure(): void {
+    if (this.isVersion2) {
+      return this.configureVersion2();
+    }
+
+    const loading = this.loadingCtrl.create();
+    loading.present();
+
+    const seedServerUrl = this.getSeedServerUrl();
+    new mlcts.Client(MlcNetwork.getDefault(MlcNetworkType.Mainnet))
+      .loader.autoConfigure(seedServerUrl.origin)
+      .finally(() => loading.dismiss())
+      .subscribe((r: MlcLoaderAutoConfigure) => {
+        if (!r.success) {
+          this.configureError();
+          return;
+        }
+
+        this.network.name = this.name;
+        this.network.nethash = r.network.nethash;
+        this.network.token = r.network.token;
+        this.network.symbol = r.network.symbol;
+        this.network.explorer = r.network.explorer;
+        this.network.version = r.network.version;
+        this.network.activePeer = new Peer();
+        this.network.activePeer.ip = seedServerUrl.hostname;
+        this.network.activePeer.port = Number(seedServerUrl.port);
+        this.network.type = null;
+        this.dismiss(this.network);
+      }, () => this.configureError());
+  }
+
+  private configureVersion2(): void {
+    const loading = this.loadingCtrl.create();
+    loading.present();
+
+    const seedServerUrl = this.getSeedServerUrl();
+    new arkts.Client(MlcNetwork.getDefault(MlcNetworkType.Mainnet))
+      .peer.getVersion2Config(seedServerUrl.hostname, Number(seedServerUrl.port))
+      .finally(() => loading.dismiss())
+      .subscribe((r: MlcPeerVersion2ConfigResponse) => {
+        if (!r.data) {
+          this.configureError();
+          return;
+        }
+
+        this.network.name = this.name;
+        this.network.nethash = lodash.get(r, 'data.network.nethash');
+        this.network.token = lodash.get(r, 'data.network.token.name');
+        this.network.symbol = lodash.get(r, 'data.network.token.symbol');
+        this.network.explorer = lodash.get(r, 'data.network.explorer');
+        this.network.version = lodash.get(r, 'data.network.version');
+        this.network.activePeer = new Peer();
+        this.network.activePeer.ip = seedServerUrl.hostname;
+        this.network.activePeer.port = Number(seedServerUrl.port);
+        this.network.type = null;
+
+        const apiConfig: any = lodash.find(r.data.plugins, (_, key) => key.split('/').reverse()[0] === 'core-api');
+        if (!r.data.plugins || !apiConfig || !apiConfig.enabled || !apiConfig.port) {
+          this.configureError();
+          return;
+        }
+        this.network.apiPort = apiConfig.port;
+        this.network.p2pPort = Number(seedServerUrl.port);
+        this.network.p2pVersion = '2.0.0';
+        this.network.isV2 = true;
+        this.dismiss(this.network);
+      }, () => this.configureError());
+  }
+
+  public getSeedServerUrl(): URL {
+    try {
+      return new URL(this.seedServer);
+    } catch (error) {
+      return null;
+    }
+  }
+
+  private configureError(): void {
+    this.network = new Network();
+    this.toastProvider.error('CUSTOM_NETWORK.CONFIGURE_ERROR');
+  }
+} */

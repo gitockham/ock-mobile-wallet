@@ -22,7 +22,7 @@ export class PassphraseWordTesterModal {
               private viewCtrl: ViewController,
               private userDataProvider: UserDataProvider) {
     this.passphraseReference = this.navParams.get('passphrase');
-    this.wordlistLanguage = this.navParams.get('wordlistLanguage') || 'english';
+    this.wordlistLanguage = this.navParams.get('wordlistLanguage') || 'french';
 
     if (!this.passphraseReference) {
       this.dismiss();

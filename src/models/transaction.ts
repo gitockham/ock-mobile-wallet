@@ -1,10 +1,18 @@
 import { Transaction as TransactionModel, TransactionType } from 'ark-ts/model';
 import arkConfig from 'ark-ts/config';
 
+// import { OckTransaction as OckTransactionModel, OckTransactionType } from 'ock-ts/model';
+// import ockConfig from 'ock-ts/config';
+
+// import { MlcTransaction as MlcTransactionModel, MlcTransactionType } from 'mlc-ts/model';
+// import mlcConfig from 'mlc-ts/config';
+
 import { MarketCurrency, MarketHistory, MarketTicker } from '@models/market';
 
 import { StoredNetwork } from './stored-network';
 import { ArkUtility } from '../utils/ark-utility';
+// import { OckUtility } from '../utils/ock-utility';
+// import { MlcUtility } from '../utils/mlc-utility';
 
 const TX_TYPES = {
   0: 'TRANSACTIONS_PAGE.SENT',
@@ -121,3 +129,185 @@ export class Transaction extends TransactionModel {
   }
 
 }
+
+/* export class OckTransaction extends OckTransactionModel {
+
+  public date: Date;
+
+  constructor(public address: string, private network: StoredNetwork) {
+    super();
+  }
+
+  deserialize(input: any): OckTransaction {
+    const self: any = this;
+
+    for (const prop in input) {
+      self[prop] = input[prop];
+    }
+
+    this.date = new Date(this.getTimestamp() * 1000);
+    delete self.network;
+
+    return self;
+  }
+
+  getAmount() {
+    let amount = this.amount;
+
+    if (this.isSender()) { amount = this.amount + this.fee; }
+
+    return amount;
+  }
+
+  getAmountEquivalent(marketCurrency: MarketCurrency, market: MarketTicker | MarketHistory): number {
+    if (!market || !marketCurrency) { return 0; }
+
+    let price = 0;
+    if (market instanceof MarketTicker) {
+      const currency = market ? market.getCurrency({ code: marketCurrency.code }) : null;
+      price = currency ? currency.price : 0;
+    } else {
+      price = market.getPriceByDate(marketCurrency.code, this.date);
+    }
+
+    const amount = OckUtility.ocktoshiToOck(this.getAmount(), true);
+
+    return amount * price;
+  }
+
+  getTimestamp() {
+    const blockchainTime = new Date(this.network.epoch).getTime() / 1000;
+
+    return this.timestamp + blockchainTime;
+  }
+
+  getAppropriateAddress() {
+    if (this.isTransfer()) {
+      if (this.isSender()) {
+        return this.recipientId;
+      } else if (this.isReceiver()) {
+        return this.senderId;
+      }
+    }
+  }
+
+  getTypeLabel(): string {
+    let type = TX_TYPES[this.type];
+
+    if (this.isTransfer() && !this.isSender()) { type = 'TRANSACTIONS_PAGE.RECEIVED'; }
+
+    return type;
+  }
+
+  getActivityLabel() {
+    let type = TX_TYPES_ACTIVITY[this.type];
+
+    if (this.isTransfer() && !this.isSender()) { type = 'TRANSACTIONS_PAGE.RECEIVED_FROM'; }
+
+    return type;
+  }
+
+  isTransfer(): boolean {
+    return this.type === OckTransactionType.SendOck;
+  }
+
+  isSender(): boolean {
+    return this.senderId === this.address;
+  }
+
+  isReceiver(): boolean {
+    return this.recipientId === this.address;
+  }
+
+} */
+
+/* export class MlcTransaction extends MlcTransactionModel {
+
+  public date: Date;
+
+  constructor(public address: string, private network: StoredNetwork) {
+    super();
+  }
+
+  deserialize(input: any): MlcTransaction {
+    const self: any = this;
+
+    for (const prop in input) {
+      self[prop] = input[prop];
+    }
+
+    this.date = new Date(this.getTimestamp() * 1000);
+    delete self.network;
+
+    return self;
+  }
+
+  getAmount() {
+    let amount = this.amount;
+
+    if (this.isSender()) { amount = this.amount + this.fee; }
+
+    return amount;
+  }
+
+  getAmountEquivalent(marketCurrency: MarketCurrency, market: MarketTicker | MarketHistory): number {
+    if (!market || !marketCurrency) { return 0; }
+
+    let price = 0;
+    if (market instanceof MarketTicker) {
+      const currency = market ? market.getCurrency({ code: marketCurrency.code }) : null;
+      price = currency ? currency.price : 0;
+    } else {
+      price = market.getPriceByDate(marketCurrency.code, this.date);
+    }
+
+    const amount = MlcUtility.mlctoshiToMlc(this.getAmount(), true);
+
+    return amount * price;
+  }
+
+  getTimestamp() {
+    const blockchainTime = new Date(this.network.epoch).getTime() / 1000;
+
+    return this.timestamp + blockchainTime;
+  }
+
+  getAppropriateAddress() {
+    if (this.isTransfer()) {
+      if (this.isSender()) {
+        return this.recipientId;
+      } else if (this.isReceiver()) {
+        return this.senderId;
+      }
+    }
+  }
+
+  getTypeLabel(): string {
+    let type = TX_TYPES[this.type];
+
+    if (this.isTransfer() && !this.isSender()) { type = 'TRANSACTIONS_PAGE.RECEIVED'; }
+
+    return type;
+  }
+
+  getActivityLabel() {
+    let type = TX_TYPES_ACTIVITY[this.type];
+
+    if (this.isTransfer() && !this.isSender()) { type = 'TRANSACTIONS_PAGE.RECEIVED_FROM'; }
+
+    return type;
+  }
+
+  isTransfer(): boolean {
+    return this.type === MlcTransactionType.SendMlc;
+  }
+
+  isSender(): boolean {
+    return this.senderId === this.address;
+  }
+
+  isReceiver(): boolean {
+    return this.recipientId === this.address;
+  }
+
+} */

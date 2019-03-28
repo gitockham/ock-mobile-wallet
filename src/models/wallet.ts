@@ -1,4 +1,6 @@
 import { Account } from 'ark-ts/model';
+// import { OckAccount } from 'ock-ts/model';
+// import { MlcAccount } from 'mlc-ts/model';
 
 import { MarketCurrency } from '@models/market';
 import { Transaction } from '@models/transaction';
@@ -102,3 +104,143 @@ export class Wallet extends Account {
   }
 
 }
+
+/* export class OckWallet extends OckAccount {
+  username: string;
+  isDelegate: boolean;
+  label?: string;
+  transactions?: Transaction[];
+  lastUpdate?: number;
+  cipherKey?: any;
+  cipherSecondKey?: any;
+  isWatchOnly?: boolean;
+  iv?: any;
+  isCold?: boolean;
+  // bip38?: string;
+  // secondBip38?: string;
+
+  constructor(isWatchOnly?: boolean) {
+    super();
+    this.reset();
+    if (isWatchOnly !== undefined) {
+      this.isWatchOnly = isWatchOnly;
+    }
+  }
+
+  deserialize(input: any): Wallet {
+    const self: any = this;
+
+    for (const prop in input) {
+      self[prop] = input[prop];
+    }
+    return self;
+  }
+
+  reset() {
+    this.label = null;
+    this.balance = '0';
+    this.isDelegate =  false;
+    this.username = null;
+    this.transactions = [];
+    this.lastUpdate = null;
+    this.cipherKey = null;
+    this.cipherSecondKey = null;
+    this.isWatchOnly = false;
+    this.isCold = false;
+  }
+
+  loadTransactions(transactions: any, network: StoredNetwork) {
+    if (!Array.isArray(transactions) || transactions.length <= 0) { return; }
+
+    this.transactions = [];
+
+    for (const tx of transactions) {
+      const transaction = new Transaction(this.address, network);
+      transaction.deserialize(tx);
+
+      this.transactions.push(transaction);
+    }
+  }
+
+  getBalance() {
+    return Number(this.balance) / constants.WALLET_UNIT_TO_SATOSHI;
+  }
+
+  getBalanceEquivalent(currency: MarketCurrency) {
+    const balance = this.getBalance() || 0;
+    const price = currency ? currency.price : 0;
+
+    return balance * price;
+  }
+
+} */
+
+/* export class MlcWallet extends MlcAccount {
+  username: string;
+  isDelegate: boolean;
+  label?: string;
+  transactions?: Transaction[];
+  lastUpdate?: number;
+  cipherKey?: any;
+  cipherSecondKey?: any;
+  isWatchOnly?: boolean;
+  iv?: any;
+  isCold?: boolean;
+  // bip38?: string;
+  // secondBip38?: string;
+
+  constructor(isWatchOnly?: boolean) {
+    super();
+    this.reset();
+    if (isWatchOnly !== undefined) {
+      this.isWatchOnly = isWatchOnly;
+    }
+  }
+
+  deserialize(input: any): Wallet {
+    const self: any = this;
+
+    for (const prop in input) {
+      self[prop] = input[prop];
+    }
+    return self;
+  }
+
+  reset() {
+    this.label = null;
+    this.balance = '0';
+    this.isDelegate =  false;
+    this.username = null;
+    this.transactions = [];
+    this.lastUpdate = null;
+    this.cipherKey = null;
+    this.cipherSecondKey = null;
+    this.isWatchOnly = false;
+    this.isCold = false;
+  }
+
+  loadTransactions(transactions: any, network: StoredNetwork) {
+    if (!Array.isArray(transactions) || transactions.length <= 0) { return; }
+
+    this.transactions = [];
+
+    for (const tx of transactions) {
+      const transaction = new Transaction(this.address, network);
+      transaction.deserialize(tx);
+
+      this.transactions.push(transaction);
+    }
+  }
+
+  getBalance() {
+    return Number(this.balance) / constants.WALLET_UNIT_TO_SATOSHI;
+  }
+
+  getBalanceEquivalent(currency: MarketCurrency) {
+    const balance = this.getBalance() || 0;
+    const price = currency ? currency.price : 0;
+
+    return balance * price;
+  }
+
+} */

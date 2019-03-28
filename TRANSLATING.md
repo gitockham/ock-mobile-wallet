@@ -1,6 +1,6 @@
 # Translations
 
-You can help out by translating the OCKHAM Mobile project to your language!
+You can help out by translating the MLC Mobile project to your language!
 
 ## Steps
 

@@ -1,21 +1,21 @@
 {
-  "name": "ockham-mobile-wallet",
+  "name": "mlc-mobile-wallet",
   "version": "0.0.1",
   "author": {
-    "name": "Ockham Consulting Institute",
-    "email": "contact@ockham.consulting",
-    "url": "https://github.com/OckhamConsulting"
+    "name": "Monnaie Locale Complémentaire",
+    "email": "contact@laroue.org",
+    "url": "https://github.com/mlcc"
   },
   "contributors": [
     {
       "name": "Luc Talarico",
-      "email": "ceo@ockham.consulting",
-      "url": "https://github.com/gitockham"
+      "email": "lta@laroue.org",
+      "url": "https://github.com/mlcc"
     }
   ],
-  "homepage": "https://github.com/gitockham/ock-mobile-wallet#readme",
+  "homepage": "https://github.com/mlcc/mobile-wallet#readme",
   "bugs": {
-    "url": "https://github.com/gitockham/ock-mobile-wallet/issues"
+    "url": "https://github.com/mlcc/mobile-wallet/issues"
   },
   "license": "MIT",
   "private": true,
@@ -88,8 +88,8 @@
     "cordova-plugin-vibration": "^3.1.0",
     "cordova-plugin-whitelist": "^1.3.3",
     "cordova-plugin-x-socialsharing": "^5.4.4",
-    "cordova-sqlite-storage": "git+https://github.com/xpbrew/cordova-sqlite-storage.git",
-    "cordova-windows": "3.5.0",
+    "cordova-sqlite-storage": "git+https://github.com/litehelpers/Cordova-sqlite-storage.git",
+    "cordova-windows": "^5.0.0",
     "es6-promise-plugin": "^4.2.2",
     "iod": "^1.1.1",
     "ionic-angular": "^3.9.2",
@@ -109,7 +109,7 @@
   "devDependencies": {
     "@angular/cli": "^1.7.4",
     "@angular/router": "^5.2.11",
-    "@ionic/app-scripts": "3.2.0",
+    "@ionic/app-scripts": "^3.2.3",
     "@types/bcryptjs": "^2.4.2",
     "@types/jasmine": "^2.8.9",
     "@types/lodash": "^4.14.117",
@@ -163,8 +163,8 @@
     "platforms": [
       "browser",
       "android",
-      "windows",
-      "ios"
+      "ios",
+      "windows"
     ]
   }
 }

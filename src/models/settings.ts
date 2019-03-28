@@ -11,8 +11,8 @@ export class UserSettings {
   public static defaults(lang: string): UserSettings {
     const settings = new UserSettings();
     settings.language = lang;
-    settings.currency = 'usd';
-    settings.wordlistLanguage = 'english';
+    settings.currency = 'eur';
+    settings.wordlistLanguage = 'french';
     settings.darkMode = false;
     settings.notification = false;
 
